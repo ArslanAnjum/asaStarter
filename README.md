@@ -265,9 +265,9 @@ For each entity we need to create a controller which would follow some set of ru
 1. Naming convention for the controllers is entity name + Controller, where entity name is the name as used by spring data rest to expose different tables. For Example, as we have a class Tag.java, then SDR would expose it as /api/tags. We would use this entity name.
 2. We need to specify all angular controllers in [controllersList.jsp](src/main/webapp/WEB-INF/views/main/includeFiles/controllersList.jsp)
 3. We would define two variables in each angular controller which would configure the angularSpringApi for this page:
-..*dataTableMetaData
+..* dataTableMetaData
 ......This variable would define all the elements and their properties that would be displayed as a table on the page and while editing an element.
-..*createFormMetaData
+..* createFormMetaData
 ......This variable would define all the elements that would be displayed on the form while creating a new element
 
 Following would be the controllers</br>
