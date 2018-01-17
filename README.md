@@ -15,6 +15,20 @@ Lets build a web application which is movies directory. So we would have followi
 
 
 We would follow folling steps to make this web application:
+1. **Clone asaStarter**
+2. **Edit Datasource**
+3. **Define Model Classes**
+4. **Generate Q Entities**
+5. **Define Repositories**
+6. **Expose Ids for All Entities**
+7. **Create Detail Projections Where Needed**
+8. **Create Angular Controllers**
+9. **Add Controllers to controllersList.jsp**
+10. **Add Menu Items**
+11. **Update routes.js**
+12. **Run The Application And Enjoy!!!**
+
+
 
 ### 1. Clone asaStarter
     git clone https://github.com/ArslanAnjum/asaStarter.git
@@ -24,7 +38,7 @@ We would follow folling steps to make this web application:
 2. Datasource is defined in [application.properties](src/main/resources/application.properties)
 3. Define a new database 'moviecatalog' in postgres and specify the same as datasource. i.e., spring.datasource.url=jdbc:postgresql://localhost:5432/moviecatalog
 
-### 3. Model Classes
+### 3. Define Model Classes
 Lets define model classes. 
 1. For this create a package com.arslan.asaStarter.module.core
 2. Inside core package define 2 more packages i.e., model and repo
@@ -157,10 +171,10 @@ Following are classes
             Boolean success;
         }
         
-### 4. Q Entities
+### 4. Generate Q Entities
 QueryDsl requires the so called q entities created. For that open terminal and run mvn install. Once this command is completed you would see generate Q classes for each entity class that was annotated with @QueryEntity in targe/generatedsources
 
-### 5. Defining Repositories
+### 5. Define Repositories
 As Q Entities have been created lets create repos for each entity in the repo package (module/core/repo). If you are using intellij you might need to add target folder as source folder. For this go to File > Project Structure > Modules. Select generated sources folder in target and make it a source folder
 
 1. **TagRepo.java**
@@ -229,7 +243,7 @@ We need to expose Ids (PK) for all entities that would be served by spring data 
             }
         }
 
-### 7. Create Projections Where Needed
+### 7. Create Detail Projections Where Needed
 We need to create projections so that we can display associations also on the CRUD page.</br>
 We know that we want Movie and Actor crud pages to display associations like country, tags etc to be displayed.</br>
 So we would create projections for these two entities in core/model/projection and we must name it 'detail'
