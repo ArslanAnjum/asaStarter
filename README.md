@@ -6,7 +6,7 @@ This repository contains empty project structure to get you started in building 
 
 Lets build a web application which is movies directory. So we would have following entities:
 
-1. **Movie**     (Name, Airing Date, Category, Tags, Actors, Country, Was It A Success)
+1. **Movie**     (Movie Name, Airing Date, Category, Tags, Actors, Country, Was It A Success)
 2. **Category**  (Category Name)
 3. **Tag**       (Tag Name)
 4. **Actor**     (Actor Name, Age, Country)
@@ -108,4 +108,51 @@ Following are classes
             @ManyToOne
             @JoinColumn(name="country_id")
             Country country;
+        }
+
+5. **Movie**
+
+        @Entity
+        @Table(name="movie",schema="public")
+        @Data
+        @QueryEntity
+        public class Movie {
+
+            @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+            @Column(name="movie_id")
+            Integer movieId;
+
+            @Column(name="movie_name")
+            String movieName;
+
+            @Column(name="airing_date")
+            Date airingDate;
+
+            @ManyToOne
+            @JoinColumn(name="category_id")
+            Category category;
+
+            @ManyToMany
+            @JoinTable(
+                    name="movie_tags",
+                    joinColumns = {@JoinColumn(name="movie_id",nullable = false,updatable = false)},
+                    inverseJoinColumns = {@JoinColumn(name="tag_id",nullable = false,updatable = false)}
+            )
+            Set<Tag> tags = new HashSet<>(0);
+
+            @ManyToMany
+            @JoinTable(
+                    name="movie_actors",
+                    joinColumns = {@JoinColumn(name="movie_id",nullable = false,updatable = false)},
+                    inverseJoinColumns = {@JoinColumn(name="actor_id",nullable = false,updatable = false)}
+            )
+            Set<Actor> actors = new HashSet<>(0);
+
+            @ManyToOne
+            @JoinColumn(name="country_id")
+            Country country;
+
+            @Column(name="success")
+            Boolean success;
         }
