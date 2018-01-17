@@ -20,7 +20,7 @@ We would follow folling steps to make this web application:
     git clone https://github.com/ArslanAnjum/asaStarter.git
     
 ### 2- Edit Datasource
-We are using postgres for this example. If you haven't installed it, please install it first!</br>
-Datasource is defined in [application.properties](src/main/resources/application.properties)</br>
-Define a new database 'moviecatalog' in postgres and specify the same as datasource. i.e., spring.datasource.url=jdbc:postgresql://localhost:5432/moviecatalog </br>
+1. We are using postgres for this example. If you haven't installed it, please install it first!</br>
+2. Datasource is defined in [application.properties](src/main/resources/application.properties)</br>
+3. Define a new database 'moviecatalog' in postgres and specify the same as datasource. i.e., spring.datasource.url=jdbc:postgresql://localhost:5432/moviecatalog </br>
 
