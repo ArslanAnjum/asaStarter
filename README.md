@@ -6,17 +6,17 @@ This repository contains empty project structure to get you started in building 
 
 Lets build a web application which is movies directory. So we would have following entities:
 
-### Movie
+**Movie**
 Name, Airing Date, Category, Tags, Actors, Country, Was It A Success
 
-### Category
+**Category**
 Category Name
 
-### Tag
+**Tag**
 Tag Name
 
-### Actor
+**Actor**
 Actor Name, Age, Country
 
-### Country
+**Country**
 Country Name
