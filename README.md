@@ -259,3 +259,48 @@ So we would create projections for these two entities in core/model/projection a
             Country getCountry();
             Boolean getSuccess();
         }
+
+### 8. Create Angular Controllers
+For each entity we need to create a controller which would follow some set of rules for its creation. We need to create controllers in src/main/resources/static/app/controllers/. If this directory is not present create it.</br>
+1. Naming convention for the controllers is entity name + Controller, where entity name is the name as used by spring data rest to expose different tables. For Example, as we have a class Tag.java, then SDR would expose it as /api/tags. We would use this entity name.
+2. We need to specify all angular controllers in [controllersList.jsp](src/main/webapp/WEB-INF/views/main/includeFiles/controllersList.jsp)
+3. We would define two variables in each angular controller which would configure the angularSpringApi for this page:
+..*dataTableMetaData
+......This variable would define all the elements and their properties that would be displayed as a table on the page and while editing an element.
+..*createFormMetaData
+......This variable would define all the elements that would be displayed on the form while creating a new element
+
+Following would be the controllers</br>
+
+1. **tagsController.js**
+
+        'use strict';
+
+        app.controller('tagsController',
+                ['$scope','apiControllerTemplate',
+                    function($scope,apiControllerTemplate){
+
+                    $scope.init = function(csrfParamName, csrfToken, csrfHeaderName,server,entity){
+                        var dataTableMetadata =
+                        {
+                            tagName 		:{iType:'input',required:true,editable:true,searchable:true,inGridVisible:true},
+                        };
+
+                        var createFormMetadata =
+                        {
+                            tagName 		:{iType:'input',required:true},
+                        };
+
+                        apiControllerTemplate
+                        .buildControllerTemplate(
+                                csrfParamName,
+                                csrfToken,
+                                csrfHeaderName,
+                                server,
+                                entity,
+                                $scope,
+                                dataTableMetadata,
+                                createFormMetadata
+                        );
+                    }
+                }]);
