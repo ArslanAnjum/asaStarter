@@ -265,9 +265,9 @@ For each entity we need to create a controller which would follow some set of ru
 1. Naming convention for the controllers is entity name + Controller, where entity name is the name as used by spring data rest to expose different tables. For Example, as we have a class Tag.java, then SDR would expose it as /api/tags. We would use this entity name.
 2. We need to specify all angular controllers in [controllersList.jsp](src/main/webapp/WEB-INF/views/main/includeFiles/controllersList.jsp)
 3. We would define two variables in each angular controller which would configure the angularSpringApi for this page:
-    * dataTableMetaData
+    * **dataTableMetaData**
         This variable would define all the elements and their properties that would be displayed as a table on the page and while editing an element.
-    * createFormMetaData
+    * **createFormMetaData**
         This variable would define all the elements that would be displayed on the form while creating a new element
 
 Following would be the controllers</br>
@@ -304,3 +304,213 @@ Following would be the controllers</br>
                         );
                     }
                 }]);
+                
+2. **categoriesController.js**
+
+        'use strict';
+
+        app.controller('categoriesController',
+                ['$scope','apiControllerTemplate',
+                    function($scope,apiControllerTemplate){
+
+                    $scope.init = function(csrfParamName, csrfToken, csrfHeaderName,server,entity){
+                        var dataTableMetadata =
+                        {
+                            categoryName 		:{iType:'input',required:true,editable:true,searchable:true,inGridVisible:true},
+                        };
+
+                        var createFormMetadata =
+                        {
+                            categoryName 		:{iType:'input',required:true},
+                        };
+
+                        apiControllerTemplate
+                        .buildControllerTemplate(
+                                csrfParamName,
+                                csrfToken,
+                                csrfHeaderName,
+                                server,
+                                entity,
+                                $scope,
+                                dataTableMetadata,
+                                createFormMetadata
+                        );
+                    }
+                }]);
+                
+3. **countriesController.js**
+
+        'use strict';
+
+        app.controller('countriesController',
+                ['$scope','apiControllerTemplate',
+                    function($scope,apiControllerTemplate){
+
+                    $scope.init = function(csrfParamName, csrfToken, csrfHeaderName,server,entity){
+
+                        var dataTableMetadata =
+                        {
+                            countryName 		:{iType:'input',required:true,editable:true,searchable:true,inGridVisible:true},
+                        };
+
+                        var createFormMetadata =
+                        {
+                            countryName 		:{iType:'input',required:true},
+                        };
+
+                        apiControllerTemplate
+                        .buildControllerTemplate(
+                                csrfParamName,
+                                csrfToken,
+                                csrfHeaderName,
+                                server,
+                                entity,
+                                $scope,
+                                dataTableMetadata,
+                                createFormMetadata
+                        );
+                    }
+                }]);
+                
+4. **actorsController.js**
+
+        'use strict';
+
+        app.controller('actorsController',
+                ['$scope','apiControllerTemplate',
+                    function($scope,apiControllerTemplate){
+
+                    $scope.init = function(csrfParamName, csrfToken, csrfHeaderName,server,entity){
+                        var dataTableMetadata =
+                        {
+                            actorName 		:{iType:'input',required:true,editable:true,searchable:true,inGridVisible:true},
+                            age 		    :{iType:'input',type:'number',required:true,editable:true,searchable:true,inGridVisible:true},
+                            country         :{iType:'searchable-dropdown',fetch:'countries',required:true,editable:true,searchable:true,inGridVisible:true}
+                        };
+
+                        var createFormMetadata =
+                        {
+                            actorName 		:{iType:'input',required:true},
+                            age 		    :{iType:'input',type:'number',required:true},
+                            country         :{iType:'searchable-dropdown',fetch:'countries',required:true}
+                        };
+
+                        apiControllerTemplate
+                        .buildControllerTemplate(
+                                csrfParamName,
+                                csrfToken,
+                                csrfHeaderName,
+                                server,
+                                entity,
+                                $scope,
+                                dataTableMetadata,
+                                createFormMetadata
+                        );
+                    }
+                }]);
+
+5. **moviesController.js**
+
+        'use strict';
+
+        app.controller('moviesController',
+                ['$scope','apiControllerTemplate',
+                    function($scope,apiControllerTemplate){
+
+                    $scope.init = function(csrfParamName, csrfToken, csrfHeaderName,server,entity){
+                        var dataTableMetadata =
+                        {
+                            movieName 		:{iType:'input',required:true,editable:true,searchable:true,inGridVisible:true},
+                            airingDate 		    :{iType:'input',type:'date',editable:true,inGridVisible:true},
+                            category            :{iType:'dropdown',fetch:'categories',required:true,editable:true,searchable:true,inGridVisible:true},
+                            country         :{iType:'searchable-dropdown',fetch:'countries',required:true,editable:true,searchable:true,inGridVisible:true},
+                            actors          :{iType:'multiselect-dropdown',fetch:'actors',required:true,editable:true,searchable:true,inGridVisible:true},
+                            tags          :{iType:'multiselect-dropdown',fetch:'tags',editable:true,searchable:true,inGridVisible:true},
+                            success     :{iType:'input',type:'binary',editable:true,searchable:true,inGridVisible:true}
+                        };
+
+                        var createFormMetadata =
+                        {
+                            movieName 		:{iType:'input',required:true},
+                            airingDate 		    :{iType:'input',type:'date'},
+                            category            :{iType:'dropdown',fetch:'categories',required:true},
+                            country         :{iType:'searchable-dropdown',fetch:'countries',required:true},
+                            actors          :{iType:'multiselect-dropdown',fetch:'actors',required:true},
+                            tags          :{iType:'multiselect-dropdown',fetch:'tags',editable:true},
+                            success     :{iType:'input',type:'binary'}
+                        };
+
+                        apiControllerTemplate
+                        .buildControllerTemplate(
+                                csrfParamName,
+                                csrfToken,
+                                csrfHeaderName,
+                                server,
+                                entity,
+                                $scope,
+                                dataTableMetadata,
+                                createFormMetadata
+                        );
+                    }
+                }]);
+
+### 9. Add Controllers to controllersList.jsp
+And adding these controllers to controllersList.jsp as follows:
+
+        <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+            pageEncoding="ISO-8859-1"%>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+        <!-- DIRECTIVES -->
+        <c:set var="basePath" value="/app/controllers/"/>
+
+        <!-- Add All Controllers Here. For Example:
+
+        <script src="${basePath}personsController.js"></script>
+        <script src="${basePath}booksController.js"></script>
+
+        -->
+
+        <script src="${basePath}tagsController.js"></script>
+        <script src="${basePath}categoriesController.js"></script>
+        <script src="${basePath}countriesController.js"></script>
+        <script src="${basePath}actorsController.js"></script>
+        <script src="${basePath}moviesController.js"></script>
+        
+### 10. Add Menu Items
+In [mainPage.jsp](src/main/webapp/WEB-INF/views/main/mainPage.jsp) search for Menu Creation. Add menu items as specified in example.</br>
+Following would be modified code at that point in mainPage.jsp:
+
+        <ul  class="right hide-on-med-and-down">
+            <li><a href="#/crud/tags"
+                   class="waves-effect waves-block waves-light">Tags</a></li>
+            <li><a href="#/crud/categories"
+                   class="waves-effect waves-block waves-light">Categories</a></li>
+            <li><a href="#/crud/countries"
+                   class="waves-effect waves-block waves-light">Countries</a></li>
+            <li><a href="#/crud/actors"
+                   class="waves-effect waves-block waves-light">Actors</a></li>
+            <li><a href="#/crud/movies"
+                   class="waves-effect waves-block waves-light">Movies</a></li>
+        </ul>
+        
+### 11. Update routes.js
+Application is ready now. The last thing which we should do is to point the angular to a page on load. For this open [routes.js](src/main/resources/static/app/routes.js) and update it as follows by pointing angular to crud/movies on load i.e., '/'
+
+        'use strict';
+
+        app.config(function ($routeProvider) {
+                $routeProvider
+                .when('/',{
+                    templateUrl : 'crud/movies'
+                })
+                .when('/crud/:entity',{
+                    templateUrl : function(param){
+                        return 'crud/' + param.entity;
+                    }
+                });
+        });
+        
+        
+### 12. Run The Application And Enjoy!!
