@@ -156,3 +156,106 @@ Following are classes
             @Column(name="success")
             Boolean success;
         }
+        
+### 4. Q Entities
+QueryDsl requires the so called q entities created. For that open terminal and run mvn install. Once this command is completed you would see generate Q classes for each entity class that was annotated with @QueryEntity in targe/generatedsources
+
+### 5. Defining Repositories
+As Q Entities have been created lets create repos for each entity in the repo package (module/core/repo). If you are using intellij you might need to add target folder as source folder. For this go to File > Project Structure > Modules. Select generated sources folder in target and make it a source folder
+
+1. **TagRepo.java**
+
+        @Transactional
+        public interface TagRepo
+            extends
+                PaginatedQueryDslRepository<Tag,Integer,QTag>{
+        }
+        
+2. **CategoryRepo.java**
+
+        @Transactional
+        public interface CategoryRepo
+            extends
+                PaginatedQueryDslRepository<Category,Integer,QCategory>{
+        }
+
+3. **CountryRepo.java**
+
+        @Transactional
+        public interface CountryRepo
+                extends
+                PaginatedQueryDslRepository<Country,Integer,QCountry>{
+        }
+        
+4. **ActorRepo.java**
+
+        @Transactional
+        public interface ActorRepo
+            extends
+                PaginatedQueryDslRepository<Actor,Integer,QActor>{
+        }
+        
+5. **MovieRepo.java**
+
+        @Transactional
+        public interface MovieRepo
+            extends
+                PaginatedQueryDslRepository<Movie,Integer,QMovie>{
+        }
+        
+### 6. Expose Ids for All Entities
+We need to expose Ids (PK) for all entities that would be served by spring data rest. For this specify all classes in [CustomRestConfiguration.java](src/main/java/com/arslan/asaStarter/configuration/CustomRestConfiguration.java) as follows:
+
+        @Configuration
+        public class CustomRestConfiguration extends RepositoryRestConfigurerAdapter {
+
+            @Override
+            public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+
+                /**
+                 * Uncomment and add all entities here. We need Ids to be exposed for proper functionality
+                 *
+                 * Example:
+                 *
+                 * config.exposeIdsFor(Person.class , Book.class , Library.class);
+                 */
+                config.exposeIdsFor(
+                        Tag.class,
+                        Category.class,
+                        Country.class,
+                        Actor.class,
+                        Movie.class
+                );
+            }
+        }
+
+### 7. Create Projections Where Needed
+We need to create projections so that we can display associations also on the CRUD page.</br>
+We know that we want Movie and Actor crud pages to display associations like country, tags etc to be displayed.</br>
+So we would create projections for these two entities in core/model/projection and we must name it 'detail'
+
+1. **ActorDetailProjection**
+
+        @Projection(name="detail",types={Actor.class})
+        public interface ActorDetailProjection {
+
+            Integer getActorId();
+            String getActorName();
+            Integer getAge();
+            Country getCountry();
+        }
+        
+2. **MovieDetailProjection**
+
+        @Projection(name="detail",types = {Movie.class})
+        public interface MovieDetailProjection {
+
+            Integer getMovieId();
+            String getMovieName();
+            Date getAiringDate();
+            Category getCategory();
+            Set<Tag> getTags();
+            Set<Actor> getActors();
+            Country getCountry();
+            Boolean getSuccess();
+        }
