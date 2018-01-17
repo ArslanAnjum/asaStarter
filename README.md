@@ -22,5 +22,5 @@ We would follow folling steps to make this web application:
 ### 2- Edit Datasource
 We are using postgres for this example. If you haven't installed it, please install it first!</br>
 Datasource is defined in [application.properties](src/main/resources/application.properties)</br>
-Define a new database 'moviecatalog' in postgres and specify the same as datasource.</br>
-    It would look something like this spring.datasource.url=jdbc:postgresql://localhost:5432/moviecatalog
+Define a new database 'moviecatalog' in postgres and specify the same as datasource. i.e., spring.datasource.url=jdbc:postgresql://localhost:5432/moviecatalog </br>
+
