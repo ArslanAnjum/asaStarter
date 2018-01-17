@@ -7,16 +7,28 @@ This repository contains empty project structure to get you started in building 
 Lets build a web application which is movies directory. So we would have following entities:
 
 **Movie**
-Name, Airing Date, Category, Tags, Actors, Country, Was It A Success
+(Name, Airing Date, Category, Tags, Actors, Country, Was It A Success)
 
 **Category**
-Category Name
+(Category Name)
 
 **Tag**
-Tag Name
+(Tag Name)
 
 **Actor**
-Actor Name, Age, Country
+(Actor Name, Age, Country)
 
 **Country**
-Country Name
+(Country Name)
+
+
+
+We would follow folling steps to make this web application:
+
+### 1- Clone asaStarter
+    git clone https://github.com/ArslanAnjum/asaStarter.git
+    
+### 2- Edit Datasource
+We are using postgres for this example. If you haven't installed it, please install it first</br>
+Datasource is defined in [application.properties](src/main/resources/application.properties)</br>
+We are using postgres for this example applic
