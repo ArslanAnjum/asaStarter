@@ -13,7 +13,8 @@ Lets build a web application which is movies directory. So we would have followi
 5. **Country**   (Country Name)
 
 
-**Final Application would like something like this**</br>
+**Final Application would look something like this**</br>
+</br>
 ![](https://github.com/ArslanAnjum/asaStarter/blob/master/src/main/resources/static/webResources/images/moviecatalog.PNG)
 
 
