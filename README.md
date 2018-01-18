@@ -14,7 +14,7 @@ Lets build a web application which is movies directory. So we would have followi
 
 
 **Final Application would like something like this**</br>
-[[https://github.com/ArslanAnjum/asaStarter/blob/master/src/main/resources/static/webResources/images/moviecatalog.PNG]]
+![](https://github.com/ArslanAnjum/asaStarter/blob/master/src/main/resources/static/webResources/images/moviecatalog.PNG)
 
 
 
