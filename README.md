@@ -1,7 +1,7 @@
 # asaStarter
 
 This repository contains empty project structure to get you started in building secured crud with spring and angularjs, using the power of [Angular Spring Api](https://github.com/ArslanAnjum/angularSpringApi).</br>
-By using this library we dont have to write the hefty angularjs, html, css. We can just define the model classes, repos, js congiguration and we would have a full fledge working secured application ready with built in searching capability !
+By using this library we dont have to write the hefty angularjs, html, css. We can just define the model classes, repos, js configuration and we would have a full fledge working secured web application ready with built in searching capability !
 
 ## Example ([Movie Catalog in 60 mins](https://github.com/ArslanAnjum/asaStarter/wiki/Movie-Catalog-Web-Application-in-60-mins.)):
 
